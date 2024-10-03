@@ -3,6 +3,7 @@ package bookingsystem;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.time.temporal.ChronoUnit;
 
 public class Concert {
 	private int concertId;
@@ -24,16 +25,18 @@ public class Concert {
 	}
 
 	public void getConcertDetails() {
-		DateTimeFormatter formatDate = DateTimeFormatter("EEEE, d MMMM yyyy 'jam' HH.mm", new Locale("id", "ID"));
+		Locale locale = Locale.forLanguageTag("id-ID");
+		DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy 'jam' HH.mm", locale);
 		String formattedDate = date.format(formatDate);
 
-		System.out.println("Concert ID: " + concertId);
-		System.out.println("Name: " + name);
-		System.out.println("Date: " + formattedDate);
-		System.out.println("Location: " + location);
-		System.out.println("Ticket Price: $" + ticketPrice);
-		System.out.println("Total Seats: " + totalSeats);
-		System.out.println("Available Seats: " + availableSeats);
+		System.out.println("Concert ID\t: " + concertId);
+		System.out.println("Name\t\t: " + name);
+		System.out.println("Date\t\t: " + formattedDate);
+		System.out.println("Location\t: " + location);
+		System.out.println("Ticket Price\t: Rp" + ticketPrice);
+		System.out.println("Total Seats\t: " + totalSeats);
+		System.out.println("Available Seats\t: " + availableSeats);
+		System.out.println("");
 	}
 
 	public boolean bookSeat(int numberOfSeats) {
@@ -49,12 +52,24 @@ public class Concert {
         	//}
 	}
 
-	public void cancelSeat(int numberOfSeats) {
-        	availableSeats += numberOfSeats;
-        	System.out.println(numberOfSeats + " seats canceled successfully.");
+	public boolean cancelSeat(int numberOfSeats) {
+		LocalDateTime now = LocalDateTime.now();
+		long daysBetween = ChronoUnit.DAYS.between(now, date);
+
+		if (daysBetween > 7) {
+        		availableSeats += numberOfSeats;
+
+			return true;
+		}
+		
+		return false;
 	}
 
 	public float getTicketPrice() {
 		return ticketPrice;
+	}
+
+	public String getName() {
+		return name;
 	}
 }

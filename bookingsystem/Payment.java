@@ -10,7 +10,7 @@ public class Payment {
 	private float amount;
 	private LocalDateTime paymentDate;
 	private SimpleEntry<String, Integer> paymentMethodEntry;
-	private enum enumStatus {PENDING, COMPLETED, FAILED, CANCELLED};
+	private enum Status {PENDING, COMPLETED, FAILED, CANCELLED};
 	private Status paymentStatus;
 
 
@@ -20,11 +20,11 @@ public class Payment {
 		this.amount = amount;
 		this.paymentDate = paymentDate;
 		this.paymentMethodEntry = new SimpleEntry<>(paymentMethod, saldo);
-		this.paymentStatus = enumStatus.PENDING;
+		this.paymentStatus = Status.PENDING;
 	}
 
 	public void processPayment() {
-		if (!paymentStatus.equals(enumStatus.PENDING)) {
+		if (!paymentStatus.equals(Status.PENDING)) {
 			System.out.println("Please make a new payment.");
 
 			return;
@@ -34,17 +34,17 @@ public class Payment {
 			if (booking.getTotalPrice() == 0) return;
 
 			System.out.println("Your balance is insufficient. Please use another payment method.");
-			paymentStatus = enumStatus.FAILED;
+			paymentStatus = Status.FAILED;
 
 			return;
 		} 
 
 		System.out.println("Payment successful with paymentId #" + paymentId);
-		paymentStatus = enumStatus.COMPLETED;
+		paymentStatus = Status.COMPLETED;
 	}
 
 	public void refundPayment() {
 		System.out.println("Your payment has been canceled.");
-		paymentStatus = enumStatus.CANCELLED;
+		paymentStatus = Status.CANCELLED;
 	}
 }
