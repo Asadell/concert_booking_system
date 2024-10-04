@@ -45,7 +45,7 @@ public class Payment {
 	}
 
 	public void refundPayment() {
-		System.out.println("Your payment has been canceled.");
+		System.out.println(ANSI_GREEN + "Your payment has been canceled, and your money has been refunded." + ANSI_RESET);
 		paymentStatus = Status.CANCELLED;
 	}
 }

@@ -59,10 +59,12 @@ public class Main {
 
 		System.out.println("\nAsadel mencoba melakukan pembayaran dengan GoPay sebesar Rp2.500.000");
 		payment2.processPayment();
+		booking1.setPayment(payment2);
 		System.out.println("\nAsadel mencoba melakukan pembayaran untuk 'Indie Band Night' dengan BCA sebesar Rp1.000.000");
 		payment3.processPayment();
+		booking3.setPayment(payment3);
 
-		System.out.println("\nAsadel mencoba membatalkan booking 'Indie Band Night'");
+		System.out.println("\nAsadel mencoba membatalkan booking 'Indie Band Night'"); 
 		booking3.cancelBooking();
 
 		// CASE 5 (failed cancel booking1)

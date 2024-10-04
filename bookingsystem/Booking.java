@@ -2,6 +2,7 @@ package bookingsystem;
 
 import bookingsystem.Customer;
 import bookingsystem.Concert;
+import bookingsystem.Payment;
 
 public class Booking {
 	private int bookingId;
@@ -11,6 +12,7 @@ public class Booking {
 	private float totalPrice;
 	private enum Status {PENDING, CONFIRMED, COMPLETED, CANCELLED};
 	private Status statusBooking;
+	private Payment payment;
 	private static final String ANSI_RESET = "\u001B[0m";
 	private static final String ANSI_RED = "\u001B[31m";
 	private static final String ANSI_GREEN = "\u001B[32m";
@@ -53,6 +55,7 @@ public class Booking {
 		}
 
 		if (concert.cancelSeat(bookedSeats)) {
+			payment.refundPayment();
 			statusBooking = Status.CANCELLED;
 			System.out.println(ANSI_GREEN + "Your booking has been successfully cancelled." + ANSI_RESET);
 
@@ -64,6 +67,10 @@ public class Booking {
 
 	public void setStatusToCompleted() {
 		statusBooking = Status.COMPLETED;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
 	}
 
 	public void invoice() {
