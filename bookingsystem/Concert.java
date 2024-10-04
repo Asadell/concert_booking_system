@@ -33,7 +33,7 @@ public class Concert {
 		System.out.println("Name\t\t: " + name);
 		System.out.println("Date\t\t: " + formattedDate);
 		System.out.println("Location\t: " + location);
-		System.out.println("Ticket Price\t: Rp" + ticketPrice);
+		System.out.println("Ticket Price\t: Rp " + ticketPrice);
 		System.out.println("Total Seats\t: " + totalSeats);
 		System.out.println("Available Seats\t: " + availableSeats);
 		System.out.println("");
@@ -46,10 +46,6 @@ public class Concert {
 		}
 	
 		return false;
-			//System.out.println(numberOfSeats + " seats booked successfully.");
-        	//} else {
-        		//System.out.println("Not enough available seats.");
-        	//}
 	}
 
 	public boolean cancelSeat(int numberOfSeats) {

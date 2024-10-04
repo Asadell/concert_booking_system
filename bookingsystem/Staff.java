@@ -28,8 +28,8 @@ public class Staff extends Person{
 			Concert concert = entry.getKey();
 			String jobDesc = entry.getValue();
 			
-			System.out.println("Konser\t\t\t: " + concert.getName());
-			System.out.println("Deskripsi Pekerjaan\t: " + jobDesc);
+			System.out.println("Concert\t\t: " + concert.getName());
+			System.out.println("Job Description\t: " + jobDesc);
 			System.out.println("");
 		}
 	}
